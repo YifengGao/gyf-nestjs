@@ -2,7 +2,6 @@ import { Controller, Get, Req, Query, Headers, Param, Post, Body} from '@nestjs/
 import { Request } from 'express';
 import { CreatePostDto } from './post.dto';
 import { DemoService } from './providers/demo/demo.service';
-import { Post } from 'src/posts/interfaces/post.interface';
 
 
 @Controller('posts')
