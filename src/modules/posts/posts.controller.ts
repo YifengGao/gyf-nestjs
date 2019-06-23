@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Query, Headers, Param, Post, Body} from '@nestjs/common';
+import { Controller, Get, Req, Query, Headers, Param, Post, Body, HttpException, HttpStatus, ForbiddenException} from '@nestjs/common';
 import { Request } from 'express';
 import { CreatePostDto } from './post.dto';
 import { DemoService } from './providers/demo/demo.service';
@@ -22,6 +22,8 @@ export class PostsController {
   
   @Post()
   store(@Body() post: CreatePostDto) {
-    this.demoService.create(post);
+    throw new ForbiddenException('没有权限！');
+    // throw new HttpException('没有权限！', HttpStatus.FORBIDDEN);
+    // this.demoService.create(post);
   }
 }
