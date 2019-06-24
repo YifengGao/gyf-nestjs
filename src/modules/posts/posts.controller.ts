@@ -4,6 +4,7 @@ import { CreatePostDto } from './post.dto';
 import { DemoService } from './providers/demo/demo.service';
 import { DemoFilter } from '../../core/filters/demo.filter';
 import { DemoAuthGuard } from '../../core/guards/demo-auth.guard';
+import { Roles } from '../../core/decorators/roles.decorator';
 
 
 @Controller('posts')
@@ -29,7 +30,8 @@ export class PostsController {
   @Post()
   //@UseFilters(DemoFilter)
   @UsePipes(ValidationPipe)
-  @SetMetadata('roles', ['member'])
+  //@SetMetadata('roles', ['member'])
+  @Roles('member')
   store(@Body() post: CreatePostDto) {
     //throw new ForbiddenException('没有权限！');
     // throw new HttpException('没有权限！', HttpStatus.FORBIDDEN);
