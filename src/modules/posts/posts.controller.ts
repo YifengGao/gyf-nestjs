@@ -10,6 +10,7 @@ import { TransformInterceptor } from '../../core/interceptors/transform.intercep
 import { ErrorsInterceptor } from '../../core/interceptors/errors.interceptor';
 import { request } from 'https';
 import { User } from '../../core/decorators/user.decorator';
+import { DemoPipe } from '../../core/pipes/demo.pipe';
 
 
 @Controller('posts')
@@ -28,7 +29,7 @@ export class PostsController {
   }
 
   @Get(':id')
-  show(@Param('id', ParseIntPipe) id){
+  show(@Param('id', ParseIntPipe, DemoPipe) id){
     console.log('id:', typeof id);
 
     return{
