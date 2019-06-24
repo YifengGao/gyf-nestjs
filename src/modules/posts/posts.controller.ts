@@ -8,6 +8,8 @@ import { Roles } from '../../core/decorators/roles.decorator';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../core/interceptors/transform.interceptor';
 import { ErrorsInterceptor } from '../../core/interceptors/errors.interceptor';
+import { request } from 'https';
+import { User } from '../../core/decorators/user.decorator';
 
 
 @Controller('posts')
@@ -39,7 +41,8 @@ export class PostsController {
   @UsePipes(ValidationPipe)
   //@SetMetadata('roles', ['member'])
   @Roles('member')
-  store(@Body('title') post: CreatePostDto) {
+  store(@Body() post: CreatePostDto, @User('demo') user) {
+    console.log(user);
     //throw new ForbiddenException('没有权限！');
     // throw new HttpException('没有权限！', HttpStatus.FORBIDDEN);
      this.demoService.create(post);
